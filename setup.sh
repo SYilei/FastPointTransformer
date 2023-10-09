@@ -5,8 +5,8 @@ SERVER=${2:-local}
 if [[ $SERVER = *local* ]]; then
     echo "[FPT INFO] Running on Local: You should manually load modules..."
     conda init zsh
-    source /opt/anaconda3/etc/profile.d/conda.sh # you may need to modify the conda path.
-    export CUDA_HOME=/usr/local/cuda-11.1
+    source /root/anaconda3/etc/profile.d/conda.sh # you may need to modify the conda path.
+    export CUDA_HOME=/usr/local/cuda        # you may need to modify this path
 else
     echo "[FPT INFO] Running on Server..."
     conda init bash
@@ -43,7 +43,7 @@ else
 
     echo "[FPT INFO] Installing other dependencies..."
     conda install -c anaconda pandas scipy h5py scikit-learn -y
-    conda install -c conda-forge plyfile pytorch-lightning torchmetrics wandb wrapt gin-config rich einops -y
+    conda install -c conda-forge plyfile pytorch-lightning torchmetrics=0.8.2 wandb wrapt gin-config rich einops -y
     conda install -c open3d-admin -c conda-forge open3d -y
     pip install lightning-bolts
     pip install torch-scatter -f https://data.pyg.org/whl/torch-1.10.0+cu111.html
